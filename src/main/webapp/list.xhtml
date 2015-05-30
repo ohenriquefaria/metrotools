@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	
+
+	
+<h:head>
+  <title>List</title>
+</h:head>
+
+<h:body style="font-size:9pt;">
+
+
+  <h:form>
+  	<p:growl autoUpdate="true" globalOnly="true" sticky="true" ></p:growl>
+	   
+  <p:dataTable value="#{usuarioMB.usuarios}" var="usuario" id="usuarios" >
+  	<p:column headerText="id">
+  		<p:outputLabel value="#{usuario.id}"></p:outputLabel>
+  	</p:column>
+  	<p:column headerText="Usuario">
+  		<p:outputLabel value="#{usuario.usuario}"></p:outputLabel>
+  	</p:column>
+  	<p:column headerText="Senha">
+  		<p:outputLabel value="#{usuario.senha}"></p:outputLabel>
+  	</p:column>
+  	<p:column>
+  		<h:commandLink action="#{usuarioMB.edit}" value="Edit" >
+  			<f:param name="id" value="#{usuario.id}"></f:param>
+  		</h:commandLink>
+  		&nbsp;&nbsp;
+  		<p:commandLink oncomplete="confirmation.show()" value="Delete">
+  		  <!-- setting the object's id to delete -->	
+  		  <f:setPropertyActionListener target="#{usuarioMB.idToDelete}" value="#{usuario.id}" />			
+  		</p:commandLink>
+  	</p:column>
+  	
+  </p:dataTable>
+
+  <p:commandButton action="#{usuarioMB.add}" ajax="false" value="Add Usuario"></p:commandButton>
+  
+  	<p:confirmDialog id="confirmDialog" message="Delete this usuario?"
+				header="Delete Usuario" severity="alert" widgetVar="confirmation">
+		<p:commandButton id="confirm" value="Yes" actionListener="#{usuarioMB.remove}"
+		 update="usuarios" oncomplete="confirmation.hide()" />
+
+		<p:commandButton id="decline" value="No" onclick="confirmation.hide()" type="button" /> 
+	</p:confirmDialog>
+  
+  </h:form>
+
+</h:body>
+</html>

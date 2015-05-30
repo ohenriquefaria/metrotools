@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Add</title>
+</h:head>
+<h:body style="font-size:9pt;">
+	
+	
+	<h:form>
+	  <h:panelGrid columns="3">
+		
+		<h:outputLabel value="Usuario" for="usuario" />
+		<p:inputText id="usuario" value="#{addUsuarioMB.usuario.usuario}" 
+			required="true" requiredMessage="Usuario cannot be empty." label="Usuario" />
+		<p:message for="usuario"/>
+		
+		<p:outputLabel value="Senha" for="senha"  />
+		<p:password id="senha" type="password"  value="#{addUsuarioMB.usuario.senha}" 
+			required="true" requiredMessage="Email cannot be empty." label="Senha" />
+		<p:message for="senha"/>
+		
+		<f:facet name="footer">
+    		<p:commandButton value="Save" ajax="false" action="#{addUsuarioMB.save}" ></p:commandButton>
+    	</f:facet>
+     </h:panelGrid>	
+    	
+	</h:form>
+
+</h:body>
+</html>

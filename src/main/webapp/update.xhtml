@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	
+	<title>Update</title>
+</h:head>
+<h:body style="font-size:9pt;">
+
+	
+
+	<h:form>
+	 
+	<h:inputHidden value="#{editUsuarioMB.bean.id}" />
+	 <h:panelGrid columns="4">
+		<h:outputLabel value="Usuario" for="usuario" />
+		<p:inputText id="usuario" value="#{editUsuarioMB.bean.usuario}" 
+			required="true" label="Usuario" requiredMessage="Name cannot be empty" /><br/>
+		<p:message for="usuario" />
+		
+		<p:outputLabel value="Senha" for="senha"  />
+		<p:password id="senha" type="password" value="#{editUsuarioMB.bean.senha}" 
+			required="true" label="Senha" requiredMessage="Senha cannot be empty" /> <br/>
+    	<p:message for="senha" />
+    	
+    	<f:facet name="footer">
+	    	<p:commandButton ajax="false" value="Save" action="#{editUsuarioMB.save}">
+	    		<f:param name="id" value="#{editUsuarioMB.bean.id}"></f:param>
+	    	</p:commandButton>
+    	</f:facet>
+
+    </h:panelGrid>
+	</h:form>
+
+</h:body>
+</html>
